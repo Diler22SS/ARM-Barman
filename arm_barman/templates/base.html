@@ -13,15 +13,29 @@
     {% comment %} <script src="{% static 'js/main.js' %}" defer></script>  <!-- set up static files: JSes --> {% endcomment %}
 </head>
 <body>
-    <nav>
-        <a href="/">home</a> | 
-        <a href="/record_drinks">record_drinks</a> |
-        <a href="/form_saves">form_saves</a> |
+    <!-- Header Section -->
+    <header class="header">
+        <div class="title">АРМ Бармена</div>
+        <div class="local-time">
+            <span>Локальное время:</span>
+            <span>23:59 31/12/23</span>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/">Главная</a> 
+        <a href="/record_drinks">Учет</a>
+        <a href="/form_saves">Отчеты</a>
+        <div class="user-info">Бармен 1</div> <!-- Optional user info section if needed -->
     </nav>
-    <main>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
         {% block content %}
-        
+        <h1>MAIN</h1>
         {% endblock %}
     </main>
+
 </body>
 </html>

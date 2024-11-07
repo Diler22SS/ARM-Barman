@@ -1,9 +1,86 @@
 {% extends "base.html" %}
 
 {% block title %}
-    record_drinks
+Учет оплаченных заказов
 {% endblock title %}
 
 {% block content %}
-    <h1>record_drinks</h1>
+    <h1>Учет оплаченных заказов</h1> <!-- Main content title -->
+    <p>Таблица пуста. Создайте заказ.</p> <!-- Empty state message -->
+
+    <button class="button" onclick="openModal()">Создать</button>
+    <button class="button" disabled>Раскрыть детали</button>
+    <button class="button" disabled>Изменить</button>
+    <button class="button" style="color: #d32f2f;" disabled>Удалить</button> <!-- Delete button with red color -->
+
+    <!-- Модальное окно -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Создание заказа № _</h2>
+                <button class="button" onclick="closeModal()">Отмена</button>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 10px 0;">
+                    <label>Название напитка</label>
+                    <select>
+                        <option value="coffee">Кофе</option>
+                        <option value="tea">Чай</option>
+                        <option value="juice">Сок</option>
+                    </select>
+                </div>
+
+                <br>
+                
+                <div class="quantity-controls" style="padding: 10px 0;"> 
+                    <label>Количество</label>
+                    <div>
+                        <button onclick="decreaseQuantity()">−</button>
+                        <span class="quantity-display" id="quantityDisplay">1</span>
+                        <button onclick="increaseQuantity()">+</button>
+                    </div>
+                </div>
+                
+                <div style="padding: 10px 0;">
+                    <button class="button">Добавить</button>
+                    <button class="button" disabled>Изменить</button>
+                    <button class="button" disabled style="color: #d32f2f;">Удалить</button>
+                </div>
+
+                <p>Добавьте напитки, чтобы создать заказ.</p> <!-- Empty state message -->
+            </div>
+            <div class="modal-footer">
+                <label style="padding-right: 20px;"><input type="checkbox"> Заказ оплачен</label>
+                <button class="button" style="color: #388e3c;">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для открытия модального окна
+        function openModal() {
+            document.getElementById("orderModal").style.display = "flex";
+        }
+    
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById("orderModal").style.display = "none";
+        }
+    
+        // Логика для изменения количества
+        let quantity = 1;
+    
+        function increaseQuantity() {
+            quantity++;
+            document.getElementById("quantityDisplay").textContent = quantity;
+        }
+    
+        function decreaseQuantity() {
+            if (quantity > 1) {
+                quantity--;
+                document.getElementById("quantityDisplay").textContent = quantity;
+            }
+        }
+    </script>
 {% endblock content %}
+
